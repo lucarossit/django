@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block page_content %}
+<body style="text-align: center; font-family: 'Courier New';">
+    <h1 style="font-family:'Courier New'"> Pfadi Rain </h1>
+    <p>
+        {% load static %} <img src="{% static "img/Pfadi.png" %}" style="width: 35vw; min-width: 330px;" alt="PfadiRain" />
+    </p>
+    <button onclick="window.location.href='/news';">News</button>
+    <button onclick="window.location.href='/events';">Events</button>
+    <button onclick="window.location.href='/login';">Login</button>
+</body>
+{% endblock %}

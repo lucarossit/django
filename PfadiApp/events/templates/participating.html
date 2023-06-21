@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block page_content %}
+        <div class="mw6 center pa3 sans-serif">
+            <h1 class="mb4">EVENTS</h1>
+        {% for event in events %}
+            <div class="pa2 mb3 striped--near-white">
+                <div class="pl2">
+                    <h2 class="mb2">{{ event.title }}</h2>
+                    <p class="mb2">Date: {{ event.date }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <button onclick="window.location.href='/';">Back</button>
+        </div>
+{% endblock %}

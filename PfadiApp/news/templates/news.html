@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block page_content %}
+        <div class="mw6 center pa3 sans-serif">
+            <h1 class="mb4">NEWS</h1>
+        {% for news in allNews %}
+            <div class="pa2 mb3 striped--near-white">
+                <div class="pl2">
+                    <a href="{% url 'editNews' pk=news.pk %}">{{ news.title }}</a>
+                    <p class="mb2">Description: {{ news.description }}</p>
+                    <p class="mb2">Date: {{ news.date }}</p>
+                    <form action="{% url 'deleteNews' pk=news.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        <button onclick="window.location.href='new/'">Create News</button>
+        <button onclick="window.location.href='/';">Back</button>
+        </div>
+{% endblock %}

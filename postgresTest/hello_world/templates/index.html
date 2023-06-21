@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver app</title>
+    <style>
+        body {
+            text-align: center;
+            font-family:'Courier New';
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family:'Courier New'"> Pfadi Rain </h1>
+    <p>
+        <!--{% load static %} <img src="{% static "img/andromeda.webp" %}" style="width: 55vw; min-width: 330px;" alt="Andromeda" /-->
+        {% load static %} <img src="{% static "img/red-car.jpg" %}" style="width: 35vw; min-width: 330px;" alt="Car" />
+    </p>
+
+    <!--button onclick="window.location.href='/polls';">Polls</button-->
+    <button onclick="window.location.href='/cars/1';">Driver John Doe</button>
+    <button onclick="window.location.href='/cars/2';">Driver Jane Doe</button>
+    <button onclick="window.location.href='/cars/register';">Register</button>
+</body>
+</html>

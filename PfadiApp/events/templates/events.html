@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block page_content %}
+        <div class="mw6 center pa3 sans-serif">
+            <h1 class="mb4">EVENTS</h1>
+            <form action="{% url 'events' %}">
+                <input type="search"   placeholder="Search" aria-label="Search" name="search">
+                <button>Search</button>
+                <button onclick="window.location.href='/events/';">Reset</button>
+            </form>
+        {% for event in events %}
+            <div class="pa2 mb3 striped--near-white">
+                <div class="pl2">
+                    <h2 class="mb2">{{ event.title }}</h2>
+                    <p class="mb2">Date: {{ event.date }}</p>
+                    <form action="{% url 'viewParticipants' pk=event.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button>View Participants</button>
+                    </form>
+                    <form action="{% url 'deleteEvent' pk=event.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+        <form action="{% url 'participate' %}" method="POST">
+            {% csrf_token %}
+            <button>Participate</button>
+        </form>
+        <button onclick="window.location.href='new/'">Create Event</button>
+        <button onclick="window.location.href='/';">Back</button>
+        </div>
+{% endblock %}
