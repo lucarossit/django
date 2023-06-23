@@ -59,7 +59,4 @@ def participating(request):
     context = {
         "events": events_objs,
     }
-    for event in events_objs:
-        if event.date < datetime.today().date():
-            deleteEvent('deleteEvent', pk=event.pk)
     return render(request, "events.html", context)
