@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required, permission_required
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required, user_passes_test
 from events.models import Event, Participant
 from .forms import EventForm, ParticipateForm
 from datetime import datetime
 from django.db.models import Q
+from home.views import is_member
 
 def events(request):
     search_event = request.GET.get('search')
@@ -30,6 +31,7 @@ def participate(request):
     return render(request, 'participate.html', {'form': form})
 
 @login_required
+@user_passes_test(is_member)
 def newEvent(request):
     if request.method == "POST":
         form = EventForm(request.POST)
@@ -41,11 +43,13 @@ def newEvent(request):
     return render(request, 'newEvent.html', {'form': form})
 
 @login_required
+@user_passes_test(is_member)
 def deleteEvent(request, pk):
     Event.objects.filter(pk=pk).delete()
     return redirect('events')
 
 @login_required
+@user_passes_test(is_member)
 def viewParticipants(request, pk):
     participants_objs = Participant.objects.filter(event=pk)
     context = {

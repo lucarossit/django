@@ -59,3 +59,6 @@ def password_change(request):
 
     form = SetPasswordForm(user)
     return render(request, 'password_reset_confirm.html', {'form': form})
+
+def is_member(user):
+    return user.groups.filter(name='Leiter').exists()
